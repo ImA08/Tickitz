@@ -25,7 +25,7 @@ export function Navbar() {
           <a href="./src/pages/movie-list.html">Movie</a>
           <a href="">Buy Ticket</a>
         </div>
-        <div className="hidden md:flex md:gap-3 md:items-center md:justify-center ">
+        <div className="hidden md:flex md:gap-3 md:items-center md:justify-center">
           <a
             className="md:w-23 md:h-12 md:rounded-md gap-3 md:p-3 border border-(--primary-color) text-(--primary-color) md:flex items-center justify-center hover:bg-(--primary-color) hover:text-white"
             href="./src/pages/signIn.html"
