@@ -7,17 +7,17 @@ import hero4 from "../assets/imgs/Rectangle 38.jpg";
 export function HeroComponent() {
   return (
     <>
-      <div className="hero-section flex justify-between items-center gap-5 pt-13 px-32 pb-32">
-        <div className="hero-caption flex flex-col gap-2.5">
+      <div className="hero-section flex flex-col justify-between items-center gap-5 pt-13 py-8 md:flex-row">
+        <div className="hero-caption flex flex-col gap-2.5 text-center md:text-start">
           <p className="text-(--primary-color) text-[18px]">
             MOVIE TICKET PURCHASES #1 IN INDONESIA
           </p>
-          <p className="text-5xl/[70px] font-medium">
+          <p className="text-[32px] font-medium">
             Experience the Magic of Cinema: Book Your Tickets Today
           </p>
           <p className="text-[16px] text-(--secondary-color)">Sign up and get the ticket with a lot of discount</p>
         </div>
-        <div class="hero-images grid grid-cols-[218px_218px] grid-rows-[180px_60px_180px] gap-1.5 h-[500px]">
+        <div className="hero-images grid grid-cols-[218px_218px] grid-rows-[180px_60px_180px] gap-1.5 h-[500px]">
           <div
             style={{ backgroundImage: `url(${hero1})` }}
             className="bg-center bg-no-repeat bg-cover rounded-t-2xl"
