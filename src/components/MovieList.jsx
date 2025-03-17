@@ -4,7 +4,7 @@ import recomend1 from "../assets/png/movie-h-1.png";
 
 export function MovieList() {
   return (
-    <div className="grid grid-cols-[265px_265px_265px_265px] grid-rows-[490px] gap-4 h-[500px] overflow-hidden mb-2.5">
+    <div className="grid grid-cols-[265px_265px_265px_265px] grid-rows-[490px] gap-4 h-[530px] overflow-scroll md:overflow-hidden mb-2.5">
             <div className="movie">
               <div className="flex items-center justify-center">
                 <div
