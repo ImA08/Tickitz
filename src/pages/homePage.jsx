@@ -1,8 +1,9 @@
 import React from "react";
-import { HeroComponent } from "../components/HeroComponent";
-import { Features } from "../components/Features";
-import { MovieList } from "../components/MovieList";
-import { NewsLetter } from "../components/NewsLetter";
+import { Link } from "react-router";
+import { HeroComponent } from "../components/Home/HeroComponent";
+import { Features } from "../components/Home/Features";
+import { MovieList } from "../components/Home/MovieList";
+import { NewsLetter } from "../components/Home/NewsLetter";
 import arrow from "../assets/svg/arrow-up.svg";
 
 
@@ -13,16 +14,16 @@ export function Home() {
         <HeroComponent />
         <Features />
 
-        <div className="flex flex-col items-center mb-10">
-          <p className="text-[18px] font-bold text-(--primary-color)">MOVIES</p>
-          <h2 className="text-[32px] md:w-[545px] text-center mb-7">
+        <div className="items-center mb-10">
+          <p className="text-[18px] font-bold text-(--primary-color) text-center">MOVIES</p>
+          <h2 className="text-[32px] md:w-[545px] text-center mb-7 mx-auto">
             Exciting Movies That Should Be Watched Today
           </h2>
           <MovieList />
 
-          <p className="text-(--primary-color) text-[18px] font-bold flex gap-2 cursor-pointer hover:scale-[1.1] mt-10">
+          <Link to="/movies" className="text-(--primary-color) text-[18px] font-bold flex gap-2 cursor-pointer hover:scale-[1.1] mt-10 justify-center">
             View All <img src={arrow} alt="" />
-          </p>
+          </Link>
         </div>
 
         <div className="upcomin-movies mb-32">

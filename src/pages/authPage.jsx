@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import bgImg from "../assets/imgs/bg.png"
-import logo from "../assets/svg/tickitz-1.svg";
+import logo from "../assets/icon/tickitz 1.svg";
 
 
 export function Auth() {
