@@ -25,7 +25,7 @@ export function Profile() {
 
   return (
     <main className="bg-(--secondary-color)/20 w-full h-full">
-      <section className="relative h-fit flex flex-col gap-8 pb-17 md:pb-0 md:p-17.5 md:flex-row md:w-full md:static">
+      <section className="relative h-fit flex flex-col gap-8 pb-17 md:p-17.5 md:flex-row md:w-full md:static">
         {/* Sidebar Profile */}
         <section
           className={` ${
