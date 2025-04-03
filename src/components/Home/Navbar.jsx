@@ -52,12 +52,12 @@ export function Navbar() {
           >
             Movie
           </Link>
-          <Link
-            to="/order/payment"
+          <a
+            href="#movie-card"
             className="text-gray-800 font-medium border-b border-(--secondary-color)  hover:text-[#1d4ed8]  py-2 lg:py-0 md:border-none"
           >
             Buy Ticket
-          </Link>
+          </a>
         </div>
         {/* Navbar Buttons */}
         {user.email && user.password ? (
