@@ -8,7 +8,7 @@ import { DetailMovie } from "../components/Home/DetailMovie";
 import { Payment } from "../components/Home/Order/Payment";
 import { TicketResult } from "../components/Home/Order/TicketResult";
 import { Profile } from "../components/Home/Profile";
-
+import { SeatOrder } from "../components/Home/Order/SeatOrder";
 
 function HomeLayout() {
   return (
@@ -41,7 +41,15 @@ export function HomeRoutes() {
         }
       />
 
-      <Route path="order">
+      <Route
+        path="order/:id"
+        element={
+          <PrivateRoute redirectTo="/auth">
+            <Outlet />
+          </PrivateRoute>
+        }
+      >
+        <Route index element ={<SeatOrder />} />
         <Route path="payment" element={<Payment />} />
         <Route path="ticket" element={<TicketResult />} />
       </Route>
