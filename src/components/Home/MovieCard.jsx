@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router";
 
-function MovieCard({ key, id, title, poster, genres,  }) {
-    console.log(id, title, "INI YANG BARU")
+function MovieCard({  id, title, poster, genres,  }) {
   return (
-    <div className="movie w-[300px]">
+    <div id="movie-card" className="movie w-[300px]">
       <div className="flex items-center justify-center">
         <div
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${poster})` }}
@@ -18,7 +17,7 @@ function MovieCard({ key, id, title, poster, genres,  }) {
               Details
             </Link>
             <Link
-              to="/order/payment"
+              to={`/order/${id}`}
               className="w-[188px] h-12 text-white border border-white rounded-[5px] flex justify-center items-center hover:bg-(--primary-color) hover:text-white hover:scale-[1.1]"
             >
               Buy Ticket
@@ -27,7 +26,7 @@ function MovieCard({ key, id, title, poster, genres,  }) {
         </div>
       </div>
       <div className="desc mt-4">
-        <div className="movie-title text-[24px] font-bold truncate" title={title}>{title}</div>
+        <div className="movie-title text-[24px] font-bold truncate w-5/6 indent-8" title={title}>{title}</div>
         <div className="genres flex gap-2 mt-3">
           {genres.map((genre, index) => (
             <p
