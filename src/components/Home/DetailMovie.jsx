@@ -34,7 +34,7 @@ useEffect(()=>{
   .catch(err => console.error(err));
 }, [])
 
-console.log(detailsMovie, "LIHAT AKU")
+// console.log(detailsMovie, "LIHAT AKU")
 
   // const movie = movies.find(m => m.id === parseInt(id));
   return (
@@ -56,12 +56,16 @@ console.log(detailsMovie, "LIHAT AKU")
                 {detailsMovie.title}
               </h2>
               <div className="genres flex gap-2 mb-3 ">
-                <p className="w-fit h-fit px-6.5 py-3 text-[16px] text-(--secondary-color) bg-(--secondary-color)/10 rounded-[25px]">
-                  Action
-                </p>
-                <p className="w-fit h-fit px-6.5 py-3 text-[16px] text-(--secondary-color) bg-(--secondary-color)/10 rounded-[25px]">
-                  Adventure
-                </p>
+
+                {detailsMovie.genres?.slice(0,2).map((genre) => (
+                    <p
+                      key={genre.id}
+                      title={genre.name}
+                      className="w-fit h-fit px-6.5 py-3 text-[16px] text-(--secondary-color) bg-(--secondary-color)/10 rounded-[25px] truncate"
+                    >
+                      {genre.name}
+                    </p>
+                  ))}
               </div>
 
               <div className="w-fit flex gap-16.5">
