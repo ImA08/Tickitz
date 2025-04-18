@@ -88,6 +88,7 @@ export function Payment() {
       numberOfTickets: orders.length,
       totalPayment: `$${orders.length * 10},00`,
       seats: selectedSeats,
+      statusPayment: true,
       fullName,
       email,
       phoneNumber,
@@ -104,7 +105,44 @@ export function Payment() {
     // Simpan kembali ke localStorage
     localStorage.setItem("ticketOrders", JSON.stringify(existingOrders));
 
-    alert("Ticket order saved successfully!");
+    navigate(`/order/${id}/ticket`);
+  };
+
+  const handlePaymentLater = () => {
+    // if (!paymentMethod) {
+    //   alert("Please select a payment method.");
+    //   return;
+    // }
+
+    // if (!fullName || !email || !phoneNumber) {
+    //   alert("Please fill in all personal information fields.");
+    //   return;
+    // }
+
+    const ticketOrder = {
+      dateTime: `${ticketDate[0]}, ${ticketDate[1]} ${ticketDate[2]} ${ticketDate[3]} at ${ticketDate[4]}`,
+      movieTitle: orderData.title,
+      cinemaName: "CineOne21 Cinema",
+      numberOfTickets: orders.length,
+      totalPayment: `$${orders.length * 10},00`,
+      seats: selectedSeats,
+      statusPayment: false,
+      fullName,
+      email,
+      phoneNumber,
+      paymentMethod,
+    };
+
+    // Ambil data lama dari localStorage, jika ada
+    const existingOrders =
+      JSON.parse(localStorage.getItem("ticketOrders")) || [];
+
+    // Tambahkan pesanan baru
+    existingOrders.push(ticketOrder);
+
+    // Simpan kembali ke localStorage
+    localStorage.setItem("ticketOrders", JSON.stringify(existingOrders));
+
     navigate(`/order/${id}/ticket`);
   };
 
@@ -276,9 +314,7 @@ export function Payment() {
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setMenuPopup((isMenuPopUp) => !isMenuPopUp);
-                }}
+                onClick={handlePaymentLater}
                 className={`w-full h-fit p-3 border border-(--primary-color) text-(--primary-color) bg-white hover:text-white hover:bg-(--primary-color) rounded-[5px]`}
               >
                 Paylater
