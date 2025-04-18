@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cinemaThumbN from "../../assets/svg/CineOne21 2.svg";
 import forwardIcon from "../../assets/icon/Dropdown/Forward.svg";
 import qrCode from "../../assets/icon/QR Code 1.svg";
 
-const TicketDetails = ({ status, isPaid }) => {
+const TicketDetails = ({ ticket }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  
+  const isPaid = ticket.statusPayment; // Ubah status pembayaran
 
   return (
     <div className="w-full bg-[#F5F7F8] rounded-[10px] py-10">
       {/* Header Ticket */}
       <div className="px-12 pb-10 flex justify-between items-center">
         <div>
-          <p className="text-[14px] text-[#aaa]">Tuesday, 07 July 2020 - 04:30pm</p>
-          <p className="text-[24px] font-semibold">Spider-Man: Homecoming</p>
+          <p className="text-[14px] text-[#aaa]">{ticket.dateTime}</p>
+          <p className="text-[24px] font-semibold">{ticket.movieTitle}</p>
         </div>
         <img src={cinemaThumbN} width={160} height={64} alt="Cinema Logo" />
       </div>
-      
+
       <div className="w-full h-1 border-b border-gray-300" />
 
       {/* Status Ticket */}
@@ -58,33 +60,25 @@ const TicketDetails = ({ status, isPaid }) => {
               
               <div className="grid grid-cols-3 gap-6 px-6 my-12">
                 <div>
-                  <h3 className="text-gray-500 text-[15px] font-semibold">Category</h3>
-                  <p>PG-13</p>
-                </div>
-                <div>
-                  <h3 className="text-gray-500 text-[15px] font-semibold">Time</h3>
-                  <p>2:00pm</p>
-                </div>
-                <div>
                   <h3 className="text-gray-500 text-[15px] font-semibold">Seats</h3>
-                  <p>C4, C5, C6</p>
+                  <p>{ticket.seats.join(", ")}</p>
                 </div>
                 <div>
                   <h3 className="text-gray-500 text-[15px] font-semibold">Movie</h3>
-                  <p>Spider-Man: Homecoming</p>
+                  <p>{ticket.movieTitle}</p>
                 </div>
                 <div>
                   <h3 className="text-gray-500 text-[15px] font-semibold">Date</h3>
-                  <p>07 Jul</p>
+                  <p>{ticket.dateTime}</p>
                 </div>
                 <div>
                   <h3 className="text-gray-500 text-[15px] font-semibold">Count</h3>
-                  <p>3 pcs</p>
+                  <p>{ticket.numberOfTickets} pcs</p>
                 </div>
               </div>
 
               <p className="text-2xl mb-8 w-1/3 flex flex-col gap-2 self-center">
-                Total: <span className="font-bold">$30.00</span>
+                Total: <span className="font-bold">{ticket.totalPayment}</span>
               </p>
             </div>
           ) : (
@@ -101,14 +95,8 @@ const TicketDetails = ({ status, isPaid }) => {
               </div>
               <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <p className="text-gray-600">Total Payment</p>
-                <span className="text-[18px] font-bold text-blue-600">$30</span>
+                <span className="text-[18px] font-bold text-blue-600">{ticket.totalPayment}</span>
               </div>
-              <p className="text-gray-600 mb-6">
-              Pay this payment bill before it is due, <span className="text-red-600">June 23, 2023</span>. If the bill has not been paid by the specified time, it will be forfeited 
-              </p>
-              <button className="py-4 w-2/7 bg-blue-600 text-white font-bold rounded-[5px] hover:scale-105 cursor-pointer">
-                Check Payment
-              </button>
             </>
           )}
         </div>
@@ -118,10 +106,21 @@ const TicketDetails = ({ status, isPaid }) => {
 };
 
 export function ProfileOrderHistory() {
+  const [tickets, setTickets] = useState([]);
+
+  useEffect(() => {
+    // Ambil data dari localStorage
+    const storedTickets = JSON.parse(localStorage.getItem("ticketOrders")) || [];
+    setTickets(storedTickets);
+  }, []);
+
   return (
     <section className="flex flex-col gap-12">
-      <TicketDetails status="Inactive" isPaid={false} />
-      <TicketDetails status="Used" isPaid={true} />
+      {tickets.length > 0 ? (
+        tickets.map((ticket, index) => <TicketDetails key={index} ticket={ticket} />)
+      ) : (
+        <p className="text-center text-gray-600">No tickets found.</p>
+      )}
     </section>
   );
 }
